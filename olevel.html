@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A/L Results - M.G.A.D Dharmasiri</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .floating-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        /* Result Card Styles */
+        .result-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin: -50px auto 40px;
+            max-width: 900px;
+            position: relative;
+            z-index: 3;
+            padding: 30px;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .result-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+        }
+
+        /* Results Table */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        .results-table th, .results-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .results-table th {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .results-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .results-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .grade {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: black;
+        }
+
+        
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .student-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-table th, .results-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div id="particles-js"></div>
+        <div class="header-content">
+            <h1>G.C.E. (O/L) EXAMINATION - 2017</h1>
+            <p class="subtitle">Official Examination Results</p>
+            <div class="floating-badge">
+                <i class="fas fa-certificate"></i> Certificate.
+            </div>
+        </div>
+    </header>
+
+    <!-- Result Card -->
+    <div class="container">
+        <div class="result-card">
+            <div class="student-info">
+                <div class="info-item">
+                    <div class="info-label">Candidate Name</div>
+                    <div class="info-value">M.G.A.D DHARMASIRI</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Index Number</div>
+                    <div class="info-value">73809055</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">NIC Number</div>
+                    <div class="info-value">200202900620</div>
+                </div>
+            </div>
+
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MATHEMATICS</td>
+                        <td><span class="grade grade-c">A</span></td>
+                    </tr>
+                    <tr>
+                        <td>SCIENCE</td>
+                        <td><span class="grade grade-b">B</span></td>
+                    </tr>
+                    <tr>
+                        <td>SINHALA</td>
+                        <td><span class="grade grade-b">B</span></td>
+                    </tr>
+                    <tr>
+                        <td>BUDDHISM</td>
+                        <td><span class="grade grade-b">B</span></td>
+                    </tr>
+                     <tr>
+                        <td>INFORMATION & COMMUNICATION TECHNOLOGY</td>
+                        <td><span class="grade grade-c">B</span></td>
+                    </tr>
+                    <tr>
+                        <td>HISTORY</td>
+                        <td><span class="grade grade-b">B</span></td>
+                    </tr>
+                    
+                     <tr>
+                        <td>DRAMA AND THEATER</td>
+                        <td><span class="grade grade-c">C</span></td>
+                    </tr>
+                    <tr>
+                        <td>ENGLISH</td>
+                        <td><span class="grade grade-b">C</span></td>
+                    </tr>
+                    <tr>
+                        <td>BUSSINESS AND ACCOUNTING STUDY</td>
+                        <td><span class="grade grade-b">S</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 30px; padding: 15px; background: #fff8e1; border-radius: 5px; font-size: 0.9rem;">
+                <i class="fas fa-exclamation-circle"></i> Please note that this online result is provisional and should not be used as an official confirmation or a certification.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Copyright © 2005-2020 - Department of Examinations - Sri Lanka</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particles.js configuration
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 60,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+
+            // Animate result card on load
+            setTimeout(function() {
+                document.querySelector('.result-card').classList.add('visible');
+            }, 300);
+
+            // Animate table rows one by one
+            const tableRows = document.querySelectorAll('.results-table tbody tr');
+            tableRows.forEach((row, index) => {
+                setTimeout(() => {
+                    row.style.animation = `fadeIn 0.5s ease forwards`;
+                    row.style.opacity = 1;
+                }, 500 + (index * 100));
+            });
+
+            // Add hover effect to info items
+            const infoItems = document.querySelectorAll('.info-item');
+            infoItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

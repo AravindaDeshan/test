@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanical Design Project | My Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --accent-color: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .back-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--dark-color);
+            transform: translateY(-2px);
+        }
+
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Project Detail View */
+        .project-detail {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 30px;
+        }
+
+        .project-header {
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            position: relative;
+        }
+
+        .project-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .project-title-large {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-image-main {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-body {
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            bottom: 0;
+            left: 0;
+            border-radius: 3px;
+        }
+
+        .project-video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .code-snippet {
+            background: #2d3436;
+            color: #f5f6fa;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .code-snippet::before {
+            content: 'Design Specifications';
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            color: #a29bfe;
+            font-size: 0.8rem;
+        }
+
+        .file-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .file-link {
+            background: var(--light-color);
+            color: var(--dark-color);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .file-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .tech-item {
+            background: var(--secondary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .project-header {
+                padding: 30px 20px;
+            }
+
+            .project-title-large {
+                font-size: 2rem;
+            }
+
+            .project-body {
+                padding: 30px 20px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="projects.html" class="logo">Project 03</a>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Projects
+            </a>
+        </div>
+    </nav>
+
+    <!-- Project Detail View -->
+    <div class="container">
+        <div class="project-detail">
+            <div class="project-header">
+                <div class="project-header-content">
+                    <h1 class="project-title-large">Mechanical Components Design</h1>
+                    <h3 class="project-subtitle">SolidWorks Engineering Project</h3>
+                    
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>May 2025</span>
+                        </div>
+                       
+                        <div class="meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>Individual Project</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-body">
+                <div class="section">
+                    <h3 class="section-title">Project Overview</h3>
+                    <p>A <strong>SolidWorks-Based Mechanical Assembly</strong> is a precision-engineered design project that involves creating 3D models, simulations, and technical drawings for mechanical components or systems. This project focuses on leveraging SolidWorks' advanced tools for parametric modeling, finite element analysis (FEA), and motion studies to ensure optimal performance, durability, and manufacturability.</p>
+                </div>
+                
+                <div class="section">
+                    <h3 class="section-title">Technology Stack</h3>
+                    <div class="tech-stack">
+                        <span class="tech-item">SolidWorks 3D CAD</span>
+                        <span class="tech-item">Finite Element Analysis</span>
+                        <span class="tech-item">Motion Simulation</span>
+                        <span class="tech-item">Surface Modeling</span>
+                        <span class="tech-item">Technical Drawings</span>
+                        <span class="tech-item">Photorealistic Rendering</span>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3 class="section-title">Key Features</h3>
+                    <ul>
+                        <li>Parametric & Feature-Based Design</li>
+                        <li>Stress/Strain Analysis with FEA</li>
+                        <li>Dynamic Motion Simulation</li>
+                        <li>Assembly Design & Interference Checking</li>
+                        <li>Manufacturing-Ready Technical Documentation</li>
+                        <li>GD&T Compliant Engineering Drawings</li>
+                    </ul>
+                </div>
+                
+                
+                <div class="section">
+                    <h3 class="section-title">Design Gallery</h3>
+                    <div class="gallery">
+                        <div class="gallery-item">
+                            <img src="https://source.unsplash.com/random/600x400/?mechanical,design,1" alt="3D Model View" class="gallery-image">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://source.unsplash.com/random/600x400/?engineering,drawing,1" alt="Technical Drawing" class="gallery-image">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://source.unsplash.com/random/600x400/?assembly,mechanical,1" alt="Assembly View" class="gallery-image">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://source.unsplash.com/random/600x400/?rendering,3d,1" alt="Rendered View" class="gallery-image">
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                <div class="section">
+                    <h3 class="section-title">Project Files</h3>
+                    <div class="file-links">
+                        <a href="#" class="file-link">
+                            <i class="fas fa-file-archive"></i> Project Files
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3 class="section-title">Lessons Learned</h3>
+                    <p>Developing this mechanical design project in SolidWorks provided valuable engineering insights and technical skills development. Key takeaways include:</p>
+                    <br>
+                    <ul>
+                        <li>Mastery of parametric design principles for design flexibility</li>
+                        <li>Understanding of stress analysis and design optimization</li>
+                        <li>Importance of proper tolerancing for manufacturability</li>
+                        <li>Efficient assembly design techniques</li>
+                        <li>Creating comprehensive technical documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gallery lightbox functionality
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // In a real implementation, this would open a lightbox
+                    console.log('Gallery item clicked - would open lightbox in production');
+                });
+            });
+            
+            // Improved hover effects for tech stack items
+            const techItems = document.querySelectorAll('.tech-item');
+            
+            techItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 5px 10px rgba(0,0,0,0.2)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
